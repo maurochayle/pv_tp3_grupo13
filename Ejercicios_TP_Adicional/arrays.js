@@ -5,3 +5,4 @@ const productos = [
     {descripcion: "Microfono", precio: 45000},
     {descripcion: "Parlantes", precio: 20000}
 ];
+export default productos;
