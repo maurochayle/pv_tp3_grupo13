@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import TaskInput from './TaskInput'
+import TaskInput from './components/TaskInput'
+import TaskList from './components/TaskList'
 
 function App() {
   const [tasks, setTasks] = useState([])
@@ -10,15 +11,22 @@ function App() {
     }
   }
 
+  const onToggleComplete = (id) => {
+    setTasks(
+      tasks.map((task) =>
+        task.id === id ? { ...task, completed: !task.completed } : task
+      )
+    );
+  };
+  const onDelete = (id) => {
+    setTasks(tasks.filter((task) => task.id !== id));
+  };
+
   return (
     <div>
       <h1>Lista de Tareas</h1>
       <TaskInput onAddTask={addTask} />
-      <ul>
-        {tasks.map((task, index) => (
-          <li key={index}>{task.text}</li>
-        ))}
-      </ul>
+      <TaskList tasks={tasks} onDelete={onDelete} onToggleComplete={onToggleComplete}/>
     </div>
   )
 }
