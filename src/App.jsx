@@ -8,7 +8,7 @@ function App() {
 
   const addTask = (newTask) => {
     if (newTask.trim() !== '') {
-      setTasks([...tasks, { text: newTask, completed: false }])
+      setTasks([...tasks, { id: crypto.randomUUID(), text: newTask, completed: false}])
     }
   }
 
